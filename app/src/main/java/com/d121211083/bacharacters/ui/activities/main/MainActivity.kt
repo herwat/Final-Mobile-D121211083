@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,8 +15,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,12 +29,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.d121211083.bacharacters.R
 import com.d121211083.bacharacters.data.models.Char
 import com.d121211083.bacharacters.ui.activities.detail.DetailActivity
 import com.d121211083.bacharacters.ui.theme.D121211083BACharactersTheme
@@ -107,6 +112,26 @@ class MainActivity : ComponentActivity() {
                     contentScale = ContentScale.Crop
                 )
 
+                Box(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(35.dp)
+                        .background(
+                            color = Color(android.graphics.Color.parseColor("#ff8906")),
+                            shape = CircleShape
+                        )
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.bintang),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(start = 3.dp)
+                            .fillMaxSize()
+                            .background(color = Color(android.graphics.Color.parseColor("#ff8906")))
+                    )
+                }
+
+
                 // Character Details
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
@@ -125,8 +150,12 @@ class MainActivity : ComponentActivity() {
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = "Role: ${char.role.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = "Role: ${char.role.joinToString(", ")}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
+
     }
 }
