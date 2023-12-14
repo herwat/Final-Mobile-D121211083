@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -73,16 +74,20 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun CharItem(char: Char) {
+
         Box(
             modifier = Modifier
                 .padding(16.dp)
+                .background(color = Color(android.graphics.Color.parseColor("#ff8906")))
                 .border(1.dp, Color.Gray, RoundedCornerShape(8.dp),)
                 .clickable {
                     val intent = Intent(this, DetailActivity::class.java)
                     intent.putExtra("CHAR", char)
                     startActivity(intent)
                 }
+
         ) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,8 +126,6 @@ class MainActivity : ComponentActivity() {
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(text = "Role: ${char.role.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
-
-
             }
         }
     }
